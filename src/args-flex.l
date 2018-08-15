@@ -94,14 +94,24 @@ whitespace	([ \t])
 
 %%
 
+#if defined(CONFIG_MODERN_FLEX)
+int lt_args_wrap()
+{
+	return 1;
+	/* XXX not to get the compiler 'not used' warning */
+	yyunput(0, NULL);
+	input();
+}
+#else
 #ifndef yywrap
 int yywrap()
 {
-	return 1; 
+	return 1;
 	/* XXX not to get the compiler 'not used' warning */
-	yyunput(0, NULL); 
+	yyunput(0, NULL);
 	input();
 }
+#endif
 #endif
 
 void lt_args_error(const char *m)
