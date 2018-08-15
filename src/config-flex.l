@@ -108,6 +108,15 @@ OPTIONS				{ BEGIN(options); return OPTIONS; }
 
 %%
 
+#if defined(CONFIG_MODERN_FLEX)
+int lt_config_wrap()
+{
+	return 1;
+	/* XXX not to get the compiler 'not used' warning */
+	yyunput(0, NULL);
+	input();
+}
+#else
 #ifndef yywrap
 int yywrap()
 {
@@ -116,6 +125,7 @@ int yywrap()
 	yyunput(0, NULL);
 	input();
 }
+#endif
 #endif
 
 void lt_config_error(const char *m)

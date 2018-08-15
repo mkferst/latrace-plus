@@ -24,6 +24,9 @@
 /* Temporary directory prefix. */
 #undef CONFIG_LT_CONFIG
 
+/* Modern Flex */
+#undef CONFIG_MODERN_FLEX
+
 /* Version define. */
 #undef CONFIG_VERSION
 

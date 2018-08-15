@@ -27,6 +27,11 @@ AC_PROG_LEX
 AS_IF([test "x$LEX" = "x:"],
       [AC_MSG_ERROR([lex/flex is needed.])])
 
+AS_IF([test "x$LEX" = "xflex"],
+      [AC_PATH_PROG([FLEX],[flex])]
+      [AX_PROG_FLEX_VERSION([2.6.3],
+          [AC_DEFINE([CONFIG_MODERN_FLEX], [1], [Define if flex version >= 2.6.3])])])
+
 AC_PROG_YACC
 if test x"$YACC" = "xyacc"; then
 	AC_CHECK_PROG([YACC_EXISTS], [yacc], [yes], [no])
